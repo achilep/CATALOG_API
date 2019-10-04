@@ -9,26 +9,26 @@ public class Product {
 	private int id ;
 	private String name;
 	private String description;
-	private Blob image;
+	//private Blob image;
 	private long price;
 	 
 	 @Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + ", price="
-				+ price + ", category=" + category + "]";
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price="
+				+ price + " ]";
 	}
-	@ManyToOne
+	 @ManyToOne(fetch=FetchType.LAZY)
 	private Category category; 
 
 	public Product() {
 		
 	}
-	public Product(int id, String name, String description, Blob image, long price, Category category) {
+	public Product(int id, String name, String description, /*Blob image,*/ long price, Category category) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.image = image;
+		//this.image = image;
 		this.price = price;
 		this.category = category;
 	}
@@ -48,14 +48,14 @@ public class Product {
 		return description;
 	}
 	public void setDescription(String description) {
-		description = description;
+		this.description = description;
 	}
-	public Blob getImage() {
+	/*public Blob getImage() {
 		return image;
 	}
 	public void setImage(Blob image) {
 		this.image = image;
-	}
+	}*/
 	public long getPrice() {
 		return price;
 	}

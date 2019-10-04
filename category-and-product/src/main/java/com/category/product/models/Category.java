@@ -9,7 +9,8 @@ public class Category {
 	private int id;
 	private String name;
 	private String description;
-	@OneToMany()
+	
+	@OneToMany(mappedBy="category")
 	private List<Product> product;
 	public Category() {
 		}
@@ -47,7 +48,7 @@ public class Category {
 	}
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", product=" + product + "]";
+		return "Category [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 	
 	

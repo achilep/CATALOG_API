@@ -7,31 +7,39 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import com.category.product.models.Category;
 import com.category.product.models.Product;
 import com.category.product.repositories.ProductRepository;
 
 @Component
-public class BoostrapProduct {
+public class BoostrapProduct implements ApplicationListener<ContextRefreshedEvent>{
+	/*@Autowired
+	public BoostrapProduct(ProductRepository product) {
+		super();
+		this.product = product;
+	}*/
+
 	@Autowired
-    private ProductRepository product;
+    private ProductRepository productrepos;
     
 
-	//@Override
+	@Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        initData(100);
+        initData(10);
     }
 
     private void initData(int count) {
-      /*  for(int i = 0; i < count; i++){
-            String email = "example@example"+i+".com";
-            String phone = "67" + (int)(Math.random() * 1000000 + 9999999);
-            String name = "contact " + i;
-            Contact contact = new Contact();
-            contact.setEmail(email);
-            contact.setName(name);
-            contact.setPhone(phone);
-            contactsRepository.save(contact);
-        }*/
+       for(int i = 0; i < count; i++){
+            String description = "descrpition"+i+".defult";
+            long price = (1342+i) ;
+            String name = "aladin " + i;
+            Product product = new Product();
+            product.setName(name);
+            product.setDescription(description);
+            product.setPrice(price);
+            
+             productrepos.save(product);
+        }
     }
 
 }

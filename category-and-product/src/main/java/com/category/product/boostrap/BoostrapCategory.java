@@ -11,12 +11,18 @@ import com.category.product.models.Category;
 import com.category.product.repositories.CategoryRepository;
 
 @Component
-public class BoostrapCategory {
+public class BoostrapCategory implements ApplicationListener<ContextRefreshedEvent>{
 	@Autowired
-    private CategoryRepository category;
+    private CategoryRepository categoryrepos;
+	
     
+	/*@Autowired
+	public BoostrapCategory(CategoryRepository categoryrepos) {
+		super();
+		this.categoryrepos = categoryrepos;
+	}*/
 
-	//@Override
+	@Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         initData(10);
     }
@@ -26,11 +32,11 @@ public class BoostrapCategory {
             String description = "descrpition"+i+".defult";
             
             String name = "aladin " + i;
-            Category categorydto = new Category();
-            categorydto.setName(name);
-            categorydto.setDescription(description);
+            Category category = new Category();
+            category.setName(name);
+            category.setDescription(description);
             
-             category.save(categorydto);
+             categoryrepos.save(category);
             
        }   
     }
